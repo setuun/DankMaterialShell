@@ -722,6 +722,7 @@ Singleton {
     property string monoFontFamily: "Fira Code"
     property int fontWeight: Font.Normal
     property real fontScale: 1.0
+    property real iconScale: 1.0
     property real dankBarFontScale: 1.0
     property int textRenderType: SettingsData.TextRenderType.Qt
     property int textRenderQuality: SettingsData.TextRenderQuality.Default

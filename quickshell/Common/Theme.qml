@@ -1195,9 +1195,10 @@ Singleton {
     property real fontSizeLarge: Math.round(fontScale * 16)
     property real fontSizeXLarge: Math.round(fontScale * 20)
     property real barHeight: 48
-    property real iconSize: 24
-    property real iconSizeSmall: 16
-    property real iconSizeLarge: 32
+    property real iconScale: typeof SettingsData !== "undefined" && !(typeof SessionData !== "undefined" && SessionData.isGreeterMode) ? SettingsData.iconScale : 1.0
+    property real iconSize: Math.round(iconScale * 24)
+    property real iconSizeSmall: Math.round(iconScale * 16)
+    property real iconSizeLarge: Math.round(iconScale * 32)
 
     property real panelTransparency: 0.85
     property real popupTransparency: {

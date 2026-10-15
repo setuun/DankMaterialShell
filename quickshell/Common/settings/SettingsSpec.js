@@ -338,6 +338,7 @@ var SPEC = {
     monoFontFamily: { def: "Fira Code" },
     fontWeight: { def: 400 },
     fontScale: { def: 1.0 },
+    iconScale: { def: 1.0 },
     textRenderType: { def: 0 },
     textRenderQuality: { def: 0 },
 
