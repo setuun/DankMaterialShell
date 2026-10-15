@@ -167,7 +167,7 @@ Rectangle {
                             DankIcon {
                                 anchors.verticalCenter: parent.verticalCenter
                                 name: actionButton.modelData?.icon ?? "play_arrow"
-                                size: 16
+                                size: Math.round(16 * Theme.iconScale)
                                 color: actionButton.index === root.selectedActionIndex ? Theme.primary : Theme.surfaceText
                             }
 

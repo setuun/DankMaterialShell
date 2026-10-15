@@ -361,7 +361,7 @@ FocusScope {
                             DankIcon {
                                 anchors.verticalCenter: parent.verticalCenter
                                 name: modelData.icon
-                                size: 14
+                                size: Math.round(14 * Theme.iconScale)
                                 color: controller.searchMode === modelData.id ? Theme.buttonText : Theme.surfaceVariantText
                             }
 
@@ -441,7 +441,7 @@ FocusScope {
                     DankIcon {
                         anchors.verticalCenter: parent.verticalCenter
                         name: "extension"
-                        size: 14
+                        size: Math.round(14 * Theme.iconScale)
                         color: Theme.primaryText
                     }
 
@@ -639,7 +639,7 @@ FocusScope {
                                     DankIcon {
                                         anchors.verticalCenter: parent.verticalCenter
                                         name: modelData.icon
-                                        size: 14
+                                        size: Math.round(14 * Theme.iconScale)
                                         color: controller.fileSearchType === modelData.id ? Theme.buttonText : Theme.surfaceVariantText
                                     }
 

@@ -339,7 +339,7 @@ FocusScope {
                 DankIcon {
                     anchors.centerIn: parent
                     name: root.controller.activePluginId ? "extension" : root.controller.searchMode === "files" ? "folder" : "search"
-                    size: 20
+                    size: Math.round(20 * Theme.iconScale)
                     color: searchInput.getActiveFocus() ? Theme.primary : Theme.surfaceVariantText
                 }
             }

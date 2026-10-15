@@ -185,7 +185,7 @@ Rectangle {
             DankIcon {
                 anchors.centerIn: parent
                 name: allModeToggle.isAllowed ? "visibility" : "visibility_off"
-                size: 18
+                size: Math.round(18 * Theme.iconScale)
                 color: allModeToggle.isAllowed ? Theme.primary : Theme.surfaceVariantText
             }
 

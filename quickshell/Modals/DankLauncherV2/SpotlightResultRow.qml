@@ -239,7 +239,7 @@ Rectangle {
             DankIcon {
                 anchors.centerIn: parent
                 name: parent.isAllowed ? "visibility" : "visibility_off"
-                size: 17
+                size: Math.round(17 * Theme.iconScale)
                 color: parent.isAllowed ? Theme.primary : Theme.surfaceVariantText
             }
 

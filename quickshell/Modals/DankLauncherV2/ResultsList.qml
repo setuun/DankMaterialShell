@@ -508,7 +508,7 @@ Item {
             DankIcon {
                 anchors.horizontalCenter: parent.horizontalCenter
                 name: getEmptyIcon()
-                size: 48
+                size: Math.round(48 * Theme.iconScale)
                 color: Theme.outlineButton
 
                 function getEmptyIcon() {

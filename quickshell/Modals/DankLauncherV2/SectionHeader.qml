@@ -57,7 +57,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             visible: !leftContent.hasAppCategories
             name: root.section?.icon ?? "folder"
-            size: 16
+            size: Math.round(16 * Theme.iconScale)
             color: Theme.surfaceVariantText
         }
 
@@ -103,7 +103,7 @@ Rectangle {
                 DankIcon {
                     anchors.verticalCenter: parent.verticalCenter
                     name: categoryChip.iconMap[categoryChip.currentCategory] ?? "apps"
-                    size: 14
+                    size: Math.round(14 * Theme.iconScale)
                     color: Theme.surfaceText
                 }
 
@@ -117,7 +117,7 @@ Rectangle {
                 DankIcon {
                     anchors.verticalCenter: parent.verticalCenter
                     name: categoryPopup.visible ? "expand_less" : "expand_more"
-                    size: 14
+                    size: Math.round(14 * Theme.iconScale)
                     color: Theme.surfaceVariantText
                 }
             }
@@ -204,7 +204,7 @@ Rectangle {
                                 DankIcon {
                                     anchors.verticalCenter: parent.verticalCenter
                                     name: categoryChip.iconMap[catDelegate.modelData] ?? "apps"
-                                    size: 16
+                                    size: Math.round(16 * Theme.iconScale)
                                     color: catDelegate.isCurrent ? Theme.primary : Theme.surfaceText
                                 }
 
@@ -277,15 +277,15 @@ Rectangle {
                     required property var modelData
                     required property int index
 
-                    width: 20
-                    height: 20
+                    width: Math.round(20 * Theme.iconScale)
+                    height: width
                     radius: 4
                     color: root.viewMode === modelData.mode ? Theme.primaryHover : modeArea.containsMouse ? Theme.surfaceHover : Theme.withAlpha(Theme.surfaceHover, 0)
 
                     DankIcon {
                         anchors.centerIn: parent
                         name: parent.modelData.icon
-                        size: 14
+                        size: Math.round(14 * Theme.iconScale)
                         color: root.viewMode === parent.modelData.mode ? Theme.primary : Theme.surfaceVariantText
                     }
 
@@ -314,7 +314,7 @@ Rectangle {
             DankIcon {
                 anchors.centerIn: parent
                 name: root.section?.collapsed ? "expand_more" : "expand_less"
-                size: 16
+                size: Math.round(16 * Theme.iconScale)
                 color: collapseArea.containsMouse ? Theme.primary : Theme.surfaceVariantText
             }
 

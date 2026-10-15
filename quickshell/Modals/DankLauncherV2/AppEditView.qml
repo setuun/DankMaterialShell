@@ -74,7 +74,7 @@ FocusScope {
                 DankIcon {
                     anchors.centerIn: parent
                     name: "arrow_back"
-                    size: 20
+                    size: Math.round(20 * Theme.iconScale)
                     color: Theme.surfaceText
                 }
 

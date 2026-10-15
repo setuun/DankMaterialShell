@@ -125,7 +125,7 @@ Item {
                 DankIcon {
                     anchors.centerIn: parent
                     name: root.controller?.isSearching || root.controller?.isFileSearching ? "search" : statusIcon()
-                    size: 22
+                    size: Math.round(22 * Theme.iconScale)
                     color: Theme.surfaceVariantText
 
                     function statusIcon() {

@@ -143,7 +143,7 @@ Rectangle {
                 DankIcon {
                     anchors.centerIn: parent
                     name: "check"
-                    size: 14
+                    size: Math.round(14 * Theme.iconScale)
                     color: Theme.primaryText
                 }
             }
