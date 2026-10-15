@@ -26,7 +26,8 @@ Item {
     readonly property string dateText: systemClock.date.toLocaleDateString(I18n.locale(), SettingsData.getEffectiveDateFormat("ddd MMM d"))
     readonly property bool tight: root.controller.homeCompactTight
     readonly property real slotSize: root.tight ? Theme.iconSize : Theme.iconSizeLarge
-    readonly property real textSize: root.tight ? Theme.fontSizeSmall : Theme.fontSizeMedium
+    readonly property real heightScale: Math.max(1, root.controller.compactThickness / 38)
+    readonly property real textSize: Math.round((root.tight ? Theme.fontSizeSmall : Theme.fontSizeMedium) * root.heightScale)
     readonly property real iconSize: root.textSize + Theme.spacingXS
     readonly property real statusIconSize: root.textSize + Theme.spacingXXS
     readonly property real groupSpacing: root.controller.homeSlotMargin
