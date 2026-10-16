@@ -31,9 +31,11 @@ Item {
     readonly property real iconSize: root.textSize + Theme.spacingXS
     readonly property real statusIconSize: root.textSize + Theme.spacingXXS
     readonly property real groupSpacing: root.controller.homeSlotMargin
+    // local: a little more room after the last slot on the right
+    readonly property real trailExtra: root.isVertical ? 0 : 6
     readonly property bool isVertical: root.controller.isVertical
     readonly property string clockDisplay: root.controller.homeClockDisplay
-    readonly property real edgePad: Math.max(root.groupSpacing, ((root.isVertical ? root.height - compactColumn.height : root.width - compactRow.width)) / 2)
+    readonly property real edgePad: Math.max(root.groupSpacing, ((root.isVertical ? root.height - compactColumn.height : root.width - compactRow.width - root.trailExtra)) / 2)
     readonly property bool weatherSlotEnabled: root.controller.homeWeatherEnabled
     readonly property var brightnessDevice: DisplayService.getCurrentDeviceInfo()
     readonly property real brightnessMaximum: DisplayService.brightnessMaximum(root.brightnessDevice)
@@ -140,7 +142,7 @@ Item {
     }
 
     function pushMeasuredLength() {
-        root.controller.setHomeContentLength(root.isVertical ? compactColumn.implicitHeight : compactRow.implicitWidth);
+        root.controller.setHomeContentLength(root.isVertical ? compactColumn.implicitHeight : compactRow.implicitWidth + root.trailExtra);
     }
 
     onWeatherSlotEnabledChanged: root.syncWeatherRef(root.weatherSlotEnabled)
@@ -190,7 +192,7 @@ Item {
         required property int slotIndex
 
         readonly property real leadPad: item.slotIndex === 0 ? root.edgePad : root.groupSpacing / 2
-        readonly property real trailPad: item.slotIndex === root.groupIds.length - 1 ? root.edgePad : root.groupSpacing / 2
+        readonly property real trailPad: item.slotIndex === root.groupIds.length - 1 ? root.edgePad + root.trailExtra : root.groupSpacing / 2
         readonly property bool isClock: item.groupId === "clock"
         readonly property bool isMedia: item.groupId === "media"
         readonly property bool isWeather: item.groupId === "weather"
@@ -583,6 +585,7 @@ Item {
         id: compactRow
 
         anchors.centerIn: parent
+        anchors.horizontalCenterOffset: -root.trailExtra / 2
         visible: !root.isVertical
         height: root.slotSize
         spacing: root.groupSpacing
