@@ -201,17 +201,19 @@ Item {
             root._blurRegion = null;
             old.destroy();
         }
-        if (!BlurService.enabled)
+        // local: widgets that set forceBlur get blurred even with global blur off
+        const globalBlur = BlurService.enabled;
+        if (!globalBlur && !BlurService.available)
             return;
-        const widgets = root.chromeCoversWidgets ? [] : root._blurWidgetItems.filter(w => w && w.visible && w.width > 0 && w.height > 0);
-        const chromes = [leadingChrome, trailingChrome].filter(c => root.chromeTranslucent && c.visible);
-        if (chromes.length === 0 && widgets.length === 0 && !root.islandTranslucent)
+        const widgets = root.chromeCoversWidgets ? [] : root._blurWidgetItems.filter(w => w && w.visible && w.width > 0 && w.height > 0 && (globalBlur || w.forceBlur === true));
+        const chromes = globalBlur ? [leadingChrome, trailingChrome].filter(c => root.chromeTranslucent && c.visible) : [];
+        if (chromes.length === 0 && widgets.length === 0 && !(globalBlur && root.islandTranslucent))
             return;
         const region = blurRegionComp.createObject(root.hostWindow);
         if (!region)
             return;
         const subRegions = [];
-        if (root.islandTranslucent) {
+        if (globalBlur && root.islandTranslucent) {
             const islandSub = blurIslandRegionComp.createObject(region);
             if (islandSub)
                 subRegions.push(islandSub);
