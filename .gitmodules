@@ -1,4 +1,4 @@
 [submodule "dank-qml-common"]
 	path = dank-qml-common
-	url = https://github.com/AvengeMedia/dank-qml-common.git
-	branch = stable-1.6
+	url = https://github.com/setuun/dank-qml-common.git
+	branch = local/round-buttons
