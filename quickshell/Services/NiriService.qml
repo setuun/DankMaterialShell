@@ -1573,7 +1573,7 @@ window-rule {
         if (!niriSettings.layout)
             return "";
         const layout = niriSettings.layout;
-        const hasSettings = layout.gaps !== undefined || layout.defaultColumnWidth || layout.presetColumnWidths || layout.alwaysCenterSingleColumn !== undefined;
+        const hasSettings = layout.gaps !== undefined || layout.defaultColumnWidth || layout.presetColumnWidths || layout.alwaysCenterSingleColumn !== undefined || layout.struts;
         if (!hasSettings)
             return "";
         let block = `    layout {\n`;
@@ -1597,6 +1597,14 @@ window-rule {
         }
         if (layout.alwaysCenterSingleColumn !== undefined)
             block += layout.alwaysCenterSingleColumn ? `        always-center-single-column\n` : `        always-center-single-column false\n`;
+        if (layout.struts) {
+            block += `        struts {\n`;
+            for (const side of ["left", "right", "top", "bottom"]) {
+                if (layout.struts[side] !== undefined)
+                    block += `            ${side} ${layout.struts[side]}\n`;
+            }
+            block += `        }\n`;
+        }
         block += `    }\n`;
         return block;
     }
