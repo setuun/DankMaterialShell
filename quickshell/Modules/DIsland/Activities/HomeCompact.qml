@@ -16,7 +16,8 @@ Item {
 
     readonly property bool tight: root.controller.homeCompactTight
     readonly property real slotSize: root.tight ? Theme.iconSize : Theme.iconSizeLarge
-    readonly property real textSize: root.tight ? Theme.fontSizeSmall : Theme.fontSizeMedium
+    readonly property real heightScale: Math.max(1, root.controller.compactThickness / 38)
+    readonly property real textSize: Math.round((root.tight ? Theme.fontSizeSmall : Theme.fontSizeMedium) * root.heightScale)
     readonly property real iconSize: root.textSize + Theme.spacingXS
     readonly property real statusIconSize: root.textSize + Theme.spacingXXS
 
@@ -26,7 +27,9 @@ Item {
     readonly property real groupSpacing: root.controller.homeSlotMargin
     readonly property bool isVertical: root.controller.isVertical
     readonly property string clockDisplay: root.controller.homeClockDisplay
-    readonly property real edgePad: Math.max(root.groupSpacing, ((root.isVertical ? root.height - compactColumn.height : root.width - compactRow.width)) / 2)
+    // local: a little more room after the last slot on the right
+    readonly property real trailExtra: root.isVertical ? 0 : 6
+    readonly property real edgePad: Math.max(root.groupSpacing, ((root.isVertical ? root.height - compactColumn.height : root.width - compactRow.width - root.trailExtra)) / 2)
     readonly property bool weatherSlotEnabled: root.controller.homeWeatherEnabled
     readonly property var brightnessDevice: BrightnessService.getCurrentDeviceInfo()
     readonly property real brightnessMaximum: BrightnessService.brightnessMaximum(root.brightnessDevice)
@@ -354,7 +357,7 @@ Item {
     }
 
     function pushMeasuredLength() {
-        root.controller.setHomeContentLength(root.isVertical ? compactColumn.implicitHeight : compactRow.implicitWidth);
+        root.controller.setHomeContentLength(root.isVertical ? compactColumn.implicitHeight : compactRow.implicitWidth + root.trailExtra);
     }
 
     onWeatherSlotEnabledChanged: root.syncWeatherRef(root.weatherSlotEnabled)
@@ -472,7 +475,7 @@ Item {
 
         readonly property bool vertical: root.isVertical
         readonly property real leadPad: group.slotIndex === 0 ? root.edgePad : root.groupSpacing / 2
-        readonly property real trailPad: group.slotIndex === root.groupIds.length - 1 ? root.edgePad : root.groupSpacing / 2
+        readonly property real trailPad: group.slotIndex === root.groupIds.length - 1 ? root.edgePad + root.trailExtra : root.groupSpacing / 2
         readonly property bool isClock: group.groupId === "clock"
         readonly property bool isMedia: group.groupId === "media"
         readonly property bool isWeather: group.groupId === "weather"
@@ -959,6 +962,7 @@ Item {
         id: compactRow
 
         anchors.centerIn: parent
+        anchors.horizontalCenterOffset: -root.trailExtra / 2
         visible: !root.isVertical
         onImplicitWidthChanged: root.pushMeasuredLength()
         height: root.slotSize
