@@ -84,6 +84,8 @@ Item {
         anchors.centerIn: parent
         columns: root.vertical ? 1 : Math.max(1, layout.visibleChildren.length)
         spacing: root.vertical ? 0 : Theme.spacingS
+        // local: centre the separator against the taller text cells (Grid aligns tops)
+        verticalItemAlignment: Grid.AlignVCenter
 
         Loader {
             sourceComponent: root.dateFirst && root.showDate || !root.showTime ? dateComponent : timeComponent
