@@ -16,7 +16,10 @@ Item {
 
     readonly property bool tight: root.controller.homeCompactTight
     readonly property real slotSize: root.tight ? Theme.iconSize : Theme.iconSizeLarge
-    readonly property real textSize: root.tight ? Theme.fontSizeSmall : Theme.fontSizeMedium
+    // local: text (and the icons derived from it) grows with the island height;
+    // 2.0 keeps fontSizeMedium regardless, which looks lost in a 46 px island
+    readonly property real heightScale: Math.max(1, root.controller.compactThickness / 38)
+    readonly property real textSize: Math.round((root.tight ? Theme.fontSizeSmall : Theme.fontSizeMedium) * root.heightScale)
     readonly property real iconSize: root.textSize + Theme.spacingXS
     readonly property real statusIconSize: root.textSize + Theme.spacingXXS
 

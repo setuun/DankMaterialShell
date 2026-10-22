@@ -103,13 +103,17 @@ Item {
                 color: root.separatorColor
             }
 
-            StyledText {
+            // local: a drawn dot instead of the "•" glyph -- the glyph sits at
+            // lowercase mid-height and looked 2 px too high next to the digits
+            Rectangle {
                 id: dot
                 visible: !root.vertical && !root.split
                 anchors.centerIn: parent
-                text: "•"
+                implicitWidth: Math.round(root.fontSize * 0.55)
+                width: Math.max(3, Math.round(root.fontSize * 0.22))
+                height: width
+                radius: width / 2
                 color: root.separatorColor
-                font.pixelSize: Theme.fontSizeSmall
             }
         }
 
