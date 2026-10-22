@@ -1,4 +1,4 @@
 [submodule "dank-qml-common"]
 	path = dux-qml-common
-	url = https://github.com/setuun/dank-qml-common.git
-	branch = local/round-buttons-2.0
+	url = https://github.com/duxlabs-dev/dux-qml-common.git
+	branch = master
