@@ -68,12 +68,8 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        // local: tooltips in the surface colours (dark in dark mode) instead of
-        // Material's inverse surface, which makes them a bright box on a dark desktop
-        color: Theme.surfaceContainerHighest
+        color: Theme.inverseSurface
         radius: Theme.cornerRadiusXS
-        border.width: 1
-        border.color: Theme.outlineVariant
 
         StyledText {
             id: textContent
@@ -81,7 +77,7 @@ PanelWindow {
             anchors.centerIn: parent
             text: root.text
             font.pixelSize: Theme.fontSizeSmall
-            color: Theme.surfaceText
+            color: Theme.inverseOnSurface
             wrapMode: Text.NoWrap
             maximumLineCount: 1
             elide: Text.ElideRight
