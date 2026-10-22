@@ -104,6 +104,20 @@ Item {
                 value: Math.round(SettingsData.fontScale * 100)
                 onSliderValueChanged: newValue => SettingsData.set("fontScale", newValue / 100)
             }
+
+            SettingsSliderRow {
+                tab: "typography"
+                tags: ["icon", "scale", "size", "zoom"]
+                settingKey: "iconScale"
+                text: I18n.tr("Icon Scale")
+                description: I18n.tr("Scale icon sizes throughout the shell")
+                minimum: 75
+                maximum: 150
+                value: Math.round(SettingsData.iconScale * 100)
+                unit: "%"
+                defaultValue: 100
+                onSliderValueChanged: newValue => SettingsData.set("iconScale", newValue / 100)
+            }
             SettingsFontDropdownRow {
                 tab: "typography"
                 tags: ["font", "monospace", "code", "terminal", "process"]
